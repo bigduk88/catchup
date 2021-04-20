@@ -38,8 +38,7 @@
                 data: {},
                 success: function (response) {
 
-                    let article = response['article'];
-
+                    let article = response;
                     for (let i = 0; i < article.length; i++) {
                         let id = article[i]['id']
                         let title = article[i]['title']

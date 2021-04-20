@@ -2,6 +2,7 @@ package com.sparta.board.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -15,4 +16,10 @@ public class HomeController {
     public String article() {
         return "index";
     }
+
+    @GetMapping("hh99/article/view")
+    public String detail(@RequestParam("id") Long id) {
+        return "detail.html";
+    }
+
 }

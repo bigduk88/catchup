@@ -19,8 +19,8 @@ public class ArticleController {
         return articleRepository.findAllByOrderByIdDesc();
     }
 
-    @GetMapping("/hh99/article/view")
-    public Article getDetail (@RequestParam("id") Long id) {
+    @GetMapping("/hh99/article/view/{id}")
+    public Article getDetail (@PathVariable Long id) {
         return articleRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("null"));
     }
