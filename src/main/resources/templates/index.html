@@ -34,25 +34,22 @@
             $.ajax({
                 type: "GET",
                 url: "/hh99/article/list",
+                contentType: 'application/json',
                 data: {},
                 success: function (response) {
-                    console.log("위치 확인 1")
-                    for (let i = 0; i < article.length; i++) {
-                        console.log("위치 확인 2")
-                        let article = response[i];
-                        console.log("위치 확인 3")
-                        let title = article['title']
-                        console.log("위치 확인 4")
-                        let author = article['author']
-                        console.log("위치 확인 5")
-                        let id = article['id']
 
-                        console.log("결과:", article, title, author, id);
+                    let article = response['article'];
+
+                    for (let i = 0; i < article.length; i++) {
+                        let id = article[i]['id']
+                        let title = article[i]['title']
+                        let author = article[i]['author']
+                        let comment = article[i]['comment']
 
                         let temp_html = `<tr onclick="view('${id}')">
                                             <th scope="row">${id}</th>
-                                            <th scope="col">${author}</td>
-                                            <th scope="col">${title}</td>
+                                            <td>${author}</td>
+                                            <td>${title}</td>
                                         </tr>`
                         $('#article').append(temp_html)
                     }
