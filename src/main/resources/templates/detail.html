@@ -44,7 +44,6 @@
             $.ajax({
                 type: "GET",
                 url: `/hh99/article/view/${objid}`,
-                contentType: 'application/json',
                 data: {},
                 success: function (response) {
                     $('#title').text(response['title']);

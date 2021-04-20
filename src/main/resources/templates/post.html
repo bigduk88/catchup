@@ -39,7 +39,7 @@
                 contentType: 'application/json',
                 data: JSON.stringify({'title':title,'comment':comment,'author':author}),
                 success: function (response) {
-                    alert(response['msg']);
+                    alert('성공');
                     window.location.href='/hh99/article'
                 }
             });

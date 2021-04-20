@@ -16,19 +16,19 @@ public class ArticleController {
 
     @GetMapping("/hh99/article/list")
     public List<Article> getArticle() {
-        return articleRepository.findAllByOrderByCreatedAtDesc();
+        return articleRepository.findAllByOrderByIdDesc();
     }
 
-    @GetMapping("/hh99/article/view/{objid}")
-    public Article getDetail (@PathVariable Long objid) {
-        return articleRepository.findById(objid).orElseThrow(
+    @GetMapping("/hh99/article/view")
+    public Article getDetail (@RequestParam("id") Long id) {
+        return articleRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("null"));
     }
 
     @PostMapping("/hh99/article/post")
     public Article createArticle(@RequestBody ArticleRequestDto requestDto) {
         Article article = new Article(requestDto);
-        return articleRepository.save(article);
+        articleRepository.save(article);
+        return article;
     }
-
 }
