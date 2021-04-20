@@ -30,34 +30,36 @@
         })
 
         function listing() {
-            $('#articles').empty()
+            $('#article').empty()
             $.ajax({
                 type: "GET",
-                url: "/hh99/board/list",
+                url: "/hh99/article/list",
+                contentType: 'application/json',
                 data: {},
                 success: function (response) {
-                    let articles = response['articles'];
-                    for (let i = 0; i < articles.length; i++) {
-                        let title = articles[i]['title']
-                        let author = articles[i]['author']
-                        let objid = articles[i]['_id']
-                        let no = articles[i]['no']
+                    let article = response['article'];
+                    for (let i = 0; i < article.length; i++) {
+                        let title = article[i]['title']
+                        let author = article[i]['author']
+                        let objid = article[i]['id']
+                        let id = article[i]['id']
 
-                        let temp_html = `<tr onclick="view('${objid}')">
-                                            <th scope="row">${no}</th>
-                                            <td>${author}</td>
-                                            <td>${title}</td>
+                        let temp_html = `<tr onclick="view('${id}')">
+                                            <th scope="row">${id}</th>
+                                            <th scope="col">${author}</td>
+                                            <th scope="col">${title}</td>
                                         </tr>`
-                        $('#articles').append(temp_html)
+                        $('#article').append(temp_html)
                     }
                 }
             });
         }
 
         function view(objid) {
-            window.location.href = `/hh99/board/view?objid=${objid}`
+            window.location.href = `/hh99/article/view?objid=${objid}`
         }
     </script>
+
     <style>
         .wrap {
             width: 900px;
@@ -76,7 +78,7 @@
         <div class="container">
             <h1 class="display-4">게시판 만들기</h1>
             <p class="lead">아주 간단한 게시판을 만들어봅니다.</p>
-            <a class="btn btn-primary btn-lg" href="/hh99/board/post" role="button">글쓰기</a>
+            <a class="btn btn-primary btn-lg" href="/hh99/article/post" role="button">글쓰기</a>
         </div>
     </div>
     <table class="table table-hover">
@@ -87,7 +89,7 @@
             <th scope="col">글제목</th>
         </tr>
         </thead>
-        <tbody id="articles">
+        <tbody id="article">
         <tr onclick="view()">
             <th scope="row">1</th>
             <td>글쓴이1</td>
